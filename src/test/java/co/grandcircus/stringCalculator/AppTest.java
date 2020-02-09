@@ -28,5 +28,6 @@ public class AppTest {
 	@Test
 	public void whenTwoPositiveNumberArePassedReturnsTheSum() {
 		assertEquals(2, calculator.add("1,1"));
+		assertEquals(3, calculator.add("1,2"));
 	}
 }

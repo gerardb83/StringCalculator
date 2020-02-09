@@ -6,7 +6,8 @@ public class Calculator {
 		if (string.equals("")) {
 			return 0;
 		} else if (string.contains(",")) {
-			return 2;
+			String [] addends = string.split(",");
+			return Integer.parseInt(addends[0]) + Integer.parseInt(addends[1]);
 		} else {
 			return Integer.parseInt(string);
 		}
