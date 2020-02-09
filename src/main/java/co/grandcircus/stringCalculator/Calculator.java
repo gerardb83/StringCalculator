@@ -12,10 +12,9 @@ public class Calculator {
 		if (string.equals("")) {
 			return 0;
 		} else if (string.contains(",")) {
-			String [] addends = string.split(",");
+			String [] addends = string.split(",|\n");
 			List<Integer> numbers = convertToNumbers(addends);		
-			return sumNumbers(numbers);
-						
+			return sumNumbers(numbers);			
 		} else {
 			return toInt(string);
 		}

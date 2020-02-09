@@ -35,4 +35,9 @@ public class AppTest {
 	public void whenMultiplePositiveNumberArePassedReturnsTheSum() {
 		assertEquals(6, calculator.add("1,2,3"));
 	}
+	
+	@Test
+	public void whenNewlinePassedAsDelimiterItIsRecognized() {
+		assertEquals(6, calculator.add("1,2\n3"));
+	}
 }
