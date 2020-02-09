@@ -2,8 +2,10 @@ package co.grandcircus.stringCalculator;
 
 import static ch.lambdaj.Lambda.convert;
 
-
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import ch.lambdaj.function.convert.Converter;
 
 public class Calculator {
@@ -11,13 +13,25 @@ public class Calculator {
 	public int add(String string) {
 		if (string.equals("")) {
 			return 0;
-		} else if (string.contains(",")) {
-			String [] addends = string.split(",|\n");
-			List<Integer> numbers = convertToNumbers(addends);		
-			return sumNumbers(numbers);			
 		} else {
-			return toInt(string);
+			String[] addends = getAddends(string);
+			List<Integer> numbers = convertToNumbers(addends);		
+			
+			return sumNumbers(numbers);				
 		}
+	}
+
+	private String[] getAddends(String string) {
+		if (string.startsWith("//")) {
+			Matcher m = Pattern.compile("//(.)\n(.*)").matcher(string);
+			m.matches();
+			String customDelimiter = m.group(1);
+			String numbers = m.group(2);
+			return numbers.split(customDelimiter);
+		}
+		
+		String [] addends = string.split(",|\n");
+		return addends;
 	}
 
 	private int sumNumbers(List<Integer> numbers) {

@@ -40,4 +40,9 @@ public class AppTest {
 	public void whenNewlinePassedAsDelimiterItIsRecognized() {
 		assertEquals(6, calculator.add("1,2\n3"));
 	}
+	
+//	@Test
+//	public void whenCustomDelimiterIsUsedItIsRecognized() {
+//		assertEquals(3, calculator.add("//;\n1;2"));
+//	}
 }
