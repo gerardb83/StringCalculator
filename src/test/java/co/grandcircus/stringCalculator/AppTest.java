@@ -14,9 +14,10 @@ public class AppTest {
 	}
 
 	@Test
-	public void whenOneIsPassedReturns1() {
+	public void whenOnePositiveNumberIsPassedReturnsThatNumber() {
 		Calculator calculator = new Calculator();
 		assertEquals(1, calculator.add("1"));
+		assertEquals(10, calculator.add("10"));
 	}
 
 }
