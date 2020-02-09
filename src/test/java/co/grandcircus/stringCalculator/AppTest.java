@@ -13,6 +13,10 @@ public class AppTest {
 		assertEquals(0, calculator.add(""));
 	}
 
-	
+	@Test
+	public void whenOneIsPassedReturns1() {
+		Calculator calculator = new Calculator();
+		assertEquals(1, calculator.add("1"));
+	}
 
 }
