@@ -30,4 +30,9 @@ public class AppTest {
 		assertEquals(2, calculator.add("1,1"));
 		assertEquals(3, calculator.add("1,2"));
 	}
+	
+	@Test
+	public void whenMultiplePositiveNumberArePassedReturnsTheSum() {
+		assertEquals(6, calculator.add("1,2,3"));
+	}
 }
