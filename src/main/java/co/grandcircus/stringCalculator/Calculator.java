@@ -15,28 +15,31 @@ public class Calculator {
 			return 0;
 		} else {
 			String[] addends = getAddends(string);
-			List<Integer> numbers = convertToNumbers(addends);		
-			
-			return sumNumbers(numbers);				
+			List<Integer> numbers = convertToNumbers(addends);
+
+			return sumNumbers(numbers);
 		}
 	}
 
 	private String[] getAddends(String string) {
 		if (string.startsWith("//")) {
-			Matcher m = Pattern.compile("//(.)\n(.*)").matcher(string);
-			m.matches();
-			String customDelimiter = m.group(1);
-			String numbers = m.group(2);
-			return numbers.split(customDelimiter);
+			return getCustomAddends(string);
+		} else {
+			return string.split(",|\n");			
 		}
-		
-		String [] addends = string.split(",|\n");
-		return addends;
+	}
+
+	private String[] getCustomAddends(String string) {
+		Matcher m = Pattern.compile("//(.)\n(.*)").matcher(string);
+		m.matches();
+		String customDelimiter = m.group(1);
+		String numbers = m.group(2);
+		return numbers.split(customDelimiter);
 	}
 
 	private int sumNumbers(List<Integer> numbers) {
 		int totalSum = 0;
-		for(int number: numbers) {
+		for (int number : numbers) {
 			totalSum += number;
 		}
 		return totalSum;
@@ -53,7 +56,5 @@ public class Calculator {
 	private int toInt(String string) {
 		return Integer.parseInt(string);
 	}
-	
-	
 
 }
