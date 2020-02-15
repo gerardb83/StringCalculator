@@ -7,23 +7,26 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.hamcrest.*;
-
 import ch.lambdaj.function.convert.Converter;
 
 public class Calculator {
 
 	public int add(String string) {
-		if (string.equals("")) {
-			return 0;
-		} else {
-			String[] addends = getAddends(string);
-			List<Integer> numbers = convertToNumbers(addends);
-			List<Integer> negatives = getNegatives(numbers);
-			if (negativesFound(negatives)) {
-				throwNegativeException(negatives);
-			}
-			return sumNumbers(numbers);
+		List<Integer> numbers = parseNumbers(string);
+		ensureNegativeNumbers(numbers);
+		return sumNumbers(numbers);
+	}
+
+	private List<Integer> parseNumbers(String string) {
+		String[] addends = getAddends(string);
+		List<Integer> numbers = convertToNumbers(addends);
+		return numbers;
+	}
+
+	private void ensureNegativeNumbers(List<Integer> numbers) {
+		List<Integer> negatives = getNegatives(numbers);
+		if (negativesFound(negatives)) {
+			throwNegativeException(negatives);
 		}
 	}
 
@@ -50,10 +53,12 @@ public class Calculator {
 	}
 
 	private String[] getAddends(String string) {
-		if (string.startsWith("//")) {
+		if (string.equals("")) {
+			return new String[0];
+		} else if (string.startsWith("//")) {
 			return getCustomAddends(string);
 		} else {
-			return string.split(",|\n");			
+			return string.split(",|\n");
 		}
 	}
 
