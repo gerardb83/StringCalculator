@@ -58,4 +58,15 @@ public class AppTest {
 		} catch(RuntimeException ex) {
 		}
 	}
+	
+	@Test
+	public void exceptionMessageContainsNegativeNumbers() {
+		try {
+			calculator.add("-1,2,3");
+			fail("exception expected");
+		} catch(RuntimeException ex) {
+			assertEquals("Negatives forbidden: [-1]", ex.getMessage());
+		}
+		
+	}
 }

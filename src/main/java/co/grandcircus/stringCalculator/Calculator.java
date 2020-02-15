@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.hamcrest.*;
 
 import ch.lambdaj.function.convert.Converter;
 
@@ -25,7 +26,7 @@ public class Calculator {
 				}
 			}
 			if (!negatives.isEmpty()) {
-				throw new RuntimeException();
+				throw new RuntimeException("Negatives forbidden: " + negatives);
 			}
 			return sumNumbers(numbers);
 		}
