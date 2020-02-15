@@ -2,9 +2,11 @@ package co.grandcircus.stringCalculator;
 
 import static ch.lambdaj.Lambda.convert;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 import ch.lambdaj.function.convert.Converter;
 
@@ -16,6 +18,15 @@ public class Calculator {
 		} else {
 			String[] addends = getAddends(string);
 			List<Integer> numbers = convertToNumbers(addends);
+			List<Integer> negatives = new ArrayList();
+			for (int each : numbers) {
+				if (each < 0) {
+					negatives.add(each);
+				}
+			}
+			if (!negatives.isEmpty()) {
+				throw new RuntimeException();
+			}
 			return sumNumbers(numbers);
 		}
 	}

@@ -1,7 +1,9 @@
 package co.grandcircus.stringCalculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.internal.runners.statements.Fail;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +48,14 @@ public class AppTest {
 		assertEquals(3, calculator.add("//;\n1;2"));
 		assertEquals(5, calculator.add("//;\n1;2;2"));
 		assertEquals(5, calculator.add("//%\n1%2%2"));
+	}
+	
+	@Test
+	public void whenNegativeNumbersArePassed() {
+		try {
+			calculator.add("-1,2,3");
+			fail("exception expected");
+		} catch(RuntimeException ex) {
+		}
 	}
 }
