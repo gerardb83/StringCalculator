@@ -67,6 +67,10 @@ public class AppTest {
 		} catch(RuntimeException ex) {
 			assertEquals("Negatives forbidden: [-1]", ex.getMessage());
 		}
-		
+	}
+	
+	@Test
+	public void numbersGreaterThan1000AreIgnored() {
+		assertEquals(3, calculator.add("3,1001"));
 	}
 }

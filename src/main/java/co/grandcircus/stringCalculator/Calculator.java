@@ -73,7 +73,9 @@ public class Calculator {
 	private int sumNumbers(List<Integer> numbers) {
 		int totalSum = 0;
 		for (int number : numbers) {
+			if (number <= 1000) {
 			totalSum += number;
+			}
 		}
 		return totalSum;
 	}
