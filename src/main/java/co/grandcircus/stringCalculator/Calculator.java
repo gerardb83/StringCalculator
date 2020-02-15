@@ -19,16 +19,33 @@ public class Calculator {
 		} else {
 			String[] addends = getAddends(string);
 			List<Integer> numbers = convertToNumbers(addends);
-			List<Integer> negatives = new ArrayList();
-			for (int each : numbers) {
-				if (each < 0) {
-					negatives.add(each);
-				}
-			}
-			if (!negatives.isEmpty()) {
-				throw new RuntimeException("Negatives forbidden: " + negatives);
+			List<Integer> negatives = getNegatives(numbers);
+			if (negativesFound(negatives)) {
+				throwNegativeException(negatives);
 			}
 			return sumNumbers(numbers);
+		}
+	}
+
+	private void throwNegativeException(List<Integer> negatives) {
+		throw new RuntimeException("Negatives forbidden: " + negatives);
+	}
+
+	private boolean negativesFound(List<Integer> negatives) {
+		return !negatives.isEmpty();
+	}
+
+	private List<Integer> getNegatives(List<Integer> numbers) {
+		List<Integer> negatives = new ArrayList();
+		for (int each : numbers) {
+			sortNegatives(negatives, each);
+		}
+		return negatives;
+	}
+
+	private void sortNegatives(List<Integer> negatives, int each) {
+		if (each < 0) {
+			negatives.add(each);
 		}
 	}
 
