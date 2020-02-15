@@ -73,11 +73,15 @@ public class Calculator {
 	private int sumNumbers(List<Integer> numbers) {
 		int totalSum = 0;
 		for (int number : numbers) {
-			if (number <= 1000) {
+			if (validNumber(number)) {
 			totalSum += number;
 			}
 		}
 		return totalSum;
+	}
+
+	private boolean validNumber(int number) {
+		return number <= 1000;
 	}
 
 	private List<Integer> convertToNumbers(String[] addends) {
