@@ -16,7 +16,6 @@ public class Calculator {
 		} else {
 			String[] addends = getAddends(string);
 			List<Integer> numbers = convertToNumbers(addends);
-
 			return sumNumbers(numbers);
 		}
 	}
